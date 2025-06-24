@@ -286,7 +286,7 @@ function renderTask(task, listId) {
 
 
     let description = task.desc ? task.desc.slice(0, 100) : 'No description';
-    if(task.desc.length>100) description += ' ...' ;
+    if (task.desc.length > 100) description += ' ...';
 
     // TODO: make it more secure by using innertext instead of innerhtml
 
@@ -407,6 +407,7 @@ function loadTasks() {
     const list = document.getElementById('taskList');
     list.innerHTML = '';
     if (tasks.length === 0) {
+        console.log("no tasks");
         showEmptyMessage(list, 'No tasks to display.');
         return;
     }
@@ -463,6 +464,14 @@ function sortTasks(type = 'deadline-asc') {
     const sorting = type;
 
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    if (tasks.length === 0) {
+        document.getElementById('taskList').innerHTML = '';
+        document.getElementById('todoList').innerHTML = '';
+        showEmptyMessage(document.getElementById('taskList'), 'No tasks to display.');
+        showEmptyMessage(document.getElementById('todoList'), 'No tasks to do.');
+        return;
+    }
 
     let sortedTasks = [...tasks];
     switch (sorting) {
