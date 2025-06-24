@@ -284,6 +284,8 @@ function renderTask(task, listId) {
 
 
 
+    let title = task.name.slice(0,15);
+    if (task.name.length>15) title += "...";
 
     let description = task.desc ? task.desc.slice(0, 100) : 'No description';
     if (task.desc.length > 100) description += ' ...';
@@ -295,7 +297,7 @@ function renderTask(task, listId) {
     const content = document.createElement('div');
     content.className = `task-content row flex-row align-items-center px-3 py-2 text-center ${strike}`;
     content.innerHTML = `
-            <h5 class="col-6 col-md-2 col-lg-1">${task.name}</h5>
+            <h5 class="col-6 col-md-2">${title}</h5>
             <p class="mb-1 text-muted col-5 text-wrap d-none d-md-block">${description}</p>
             <p class="mb-0 text-muted col-5 col-lg-4">${deadline}</p>
             `;
@@ -341,7 +343,7 @@ function renderTask(task, listId) {
 
 
     const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'd-none d-lg-flex flex-column gap-2 col-2';
+    actionsDiv.className = 'd-none d-lg-flex flex-column gap-2 col-1';
 
     const completebtn = document.createElement('button');
     completebtn.className = "btn btn-sm btn-outline-success"
