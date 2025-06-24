@@ -439,7 +439,7 @@ function loadTODO() {
 // msg for empty/no saved tasks
 function showEmptyMessage(container, message) {
     const msg = document.createElement('div');
-    msg.className = 'text-center text-muted py-3 w-50 mt-3';
+    msg.className = 'text-center text-muted py-3 w-50 mt-4 align-self-center';
     msg.style.border = "3px dashed red";
 
     msg.innerText = message;
